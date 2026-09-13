@@ -1059,39 +1059,22 @@
 
                     <p>
                         Escolhemos “Aquarela do Brasil” porque a música
-                        pertence ao samba-exaltação e apresenta uma forte
-                        valorização de elementos relacionados ao Brasil.
+                        apresenta uma forte valorização de elementos relacionados ao Brasil.
                         Sua letra exalta o país, sua cultura e suas
                         características, tornando-a uma obra representativa
                         de uma importante vertente do samba.
+                        
                     </p>
 
                 </div>
 
                 <br>
 
-                <button class="music-button" onclick="showMusicPlayer()">
-                    ▶ OUVIR A MÚSICA
-                </button>
+                <button class="music-button" onclick="openSong()">
+    ▶ OUVIR NO YOUTUBE
+</button>
+                
 
-                <div id="music-message" class="music-message">
-
-                    <strong>
-                        Aquarela do Brasil — Ary Barroso
-                    </strong>
-
-                    <p>
-                        A música escolhida está indicada para a apresentação
-                        do grupo. O botão acima funciona dentro desta página
-                        e não abre outra página.
-                    </p>
-
-                    <p>
-                        Para manter o site totalmente em uma única página,
-                        não foi colocado nenhum link externo.
-                    </p>
-
-                </div>
 
             </div>
 
@@ -1346,13 +1329,15 @@
         }
 
 
-        function showMusicPlayer() {
+        function openSong() {
 
-            const message = document.getElementById("music-message");
+    window.open(
+        "https://youtu.be/3RrDAI7tFzU?is=40rssNQjOoDJBhEz",
+        "_blank"
+    );
 
-            message.classList.toggle("active");
-
-        }
+}
+        
 
     </script>
 
