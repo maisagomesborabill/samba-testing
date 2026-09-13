@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Samba — Entre Ritmos e Raízes</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #11100e;
+            color: #f5eee4;
+            overflow-x: hidden;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 5%;
+
+            background: rgba(17, 16, 14, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .header-btn {
+            padding: 12px 18px;
+
+            background: transparent;
+            color: #f5eee4;
+
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 8px;
+
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+
+            transition: 0.2s;
+        }
+
+        .header-btn:hover {
+            background: #f5eee4;
+            color: #11100e;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           TELA INICIAL
+        ========================= */
+
+        #home {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 100px 20px 60px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before,
+        #home::after {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border: 2px solid rgba(255, 255, 255, 0.08);
+
+            transform: rotate(45deg);
+        }
+
+        #home::before {
+            left: -130px;
+            top: 25%;
+        }
+
+        #home::after {
+            right: -130px;
+            bottom: 15%;
+        }
+
+        .home-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 900px;
+        }
+
+        .small-title {
+            font-size: 14px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+
+            opacity: 0.65;
+
+            margin-bottom: 20px;
+        }
+
+        .main-title {
+            font-size: clamp(70px, 13vw, 150px);
+            line-height: 0.85;
+
+            font-weight: 900;
+            letter-spacing: -5px;
+
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            max-width: 650px;
+            margin: 0 auto 35px;
+
+            font-size: 18px;
+            line-height: 1.6;
+
+            opacity: 0.75;
+        }
+
+        .start-btn {
+            padding: 17px 35px;
+
+            background: #f5eee4;
+            color: #11100e;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 2px;
+
+            transition: 0.2s;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* =========================
+           MENU
+        ========================= */
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+
+            background: rgba(17, 16, 14, 0.98);
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 900;
+        }
+
+        .menu-overlay.active {
+            display: flex;
+        }
+
+        .menu-content {
+            text-align: center;
+        }
+
+        .menu-content h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .menu-item {
+            display: block;
+
+            width: 280px;
+            margin: 10px auto;
+
+            padding: 15px;
+
+            background: transparent;
+            color: #f5eee4;
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .menu-item:hover {
+            background: #f5eee4;
+            color: #11100e;
+        }
+
+        /* =========================
+           SEÇÕES
+        ========================= */
+
+        .content-section {
+            min-height: 100vh;
+
+            padding: 130px 7% 80px;
+
+            display: flex;
+            align-items: center;
+
+            position: relative;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .section-number {
+            position: absolute;
+
+            top: 110px;
+            right: 7%;
+
+            font-size: 90px;
+            font-weight: 900;
+
+            opacity: 0.05;
+        }
+
+        .section-content {
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: bold;
+
+            letter-spacing: 4px;
+
+            opacity: 0.55;
+
+            margin-bottom: 18px;
+        }
+
+        .section-content h2 {
+            font-size: clamp(45px, 7vw, 80px);
+
+            line-height: 0.95;
+
+            margin-bottom: 25px;
+        }
+
+        .section-content h2 span {
+            opacity: 0.45;
+        }
+
+        .section-intro {
+            max-width: 800px;
+
+            font-size: 18px;
+            line-height: 1.7;
+
+            opacity: 0.7;
+
+            margin-bottom: 40px;
+        }
+
+        /* =========================
+           CARTÕES
+        ========================= */
+
+        .card-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+        }
+
+        .info-card {
+            min-height: 130px;
+
+            padding: 22px;
+
+            text-align: left;
+
+            background: rgba(255, 255, 255, 0.03);
+
+            color: #f5eee4;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            border-radius: 10px;
+
+            transition: 0.25s;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+
+            background: rgba(255, 255, 255, 0.09);
+
+            border-color: rgba(255, 255, 255, 0.35);
+        }
+
+        .info-card.active {
+            background: #f5eee4;
+            color: #11100e;
+        }
+
+        .info-card strong {
+            display: block;
+
+            font-size: 14px;
+
+            margin-bottom: 10px;
+
+            letter-spacing: 1px;
+        }
+
+        .info-card span {
+            display: block;
+
+            font-size: 12px;
+
+            opacity: 0.6;
+
+            line-height: 1.5;
+        }
+
+        /* =========================
+           CAIXA DE INFORMAÇÃO
+        ========================= */
+
+        .info-box {
+            min-height: 160px;
+
+            padding: 28px;
+
+            background: rgba(255, 255, 255, 0.04);
+
+            border-left: 3px solid #f5eee4;
+
+            border-radius: 8px;
+        }
+
+        .info-box h3 {
+            font-size: 22px;
+
+            margin-bottom: 12px;
+        }
+
+        .info-box p {
+            max-width: 900px;
+
+            font-size: 16px;
+            line-height: 1.7;
+
+            opacity: 0.72;
+        }
+
+        /* =========================
+           ARTISTAS
+        ========================= */
+
+        .artist-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 25px;
+        }
+
+        .artist-card {
+            padding: 25px;
+
+            min-height: 160px;
+
+            text-align: left;
+
+            background: rgba(255, 255, 255, 0.03);
+
+            color: #f5eee4;
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            border-radius: 10px;
+
+            transition: 0.25s;
+        }
+
+        .artist-card:hover {
+            transform: translateY(-5px);
+
+            background: rgba(255, 255, 255, 0.09);
+        }
+
+        .artist-card.active {
+            background: #f5eee4;
+            color: #11100e;
+        }
+
+        .artist-card h3 {
+            font-size: 20px;
+
+            margin-bottom: 10px;
+        }
+
+        .artist-card p {
+            font-size: 13px;
+
+            line-height: 1.5;
+
+            opacity: 0.65;
+        }
+
+        /* =========================
+           MÚSICA
+        ========================= */
+
+        .music-box {
+            padding: 35px;
+
+            background: rgba(255, 255, 255, 0.04);
+
+            border: 1px solid rgba(255, 255, 255, 0.12);
+
+            border-radius: 12px;
+
+            margin-top: 25px;
+        }
+
+        .music-box h3 {
+            font-size: 32px;
+
+            margin-bottom: 10px;
+        }
+
+        .music-details {
+            margin-bottom: 25px;
+
+            line-height: 1.8;
+
+            opacity: 0.7;
+        }
+
+        .music-button {
+            padding: 15px 25px;
+
+            background: #f5eee4;
+            color: #11100e;
+
+            border-radius: 8px;
+
+            font-weight: 900;
+
+            transition: 0.2s;
+        }
+
+        .music-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .music-message {
+            margin-top: 20px;
+
+            padding: 20px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border-radius: 8px;
+
+            display: none;
+
+            line-height: 1.6;
+        }
+
+        .music-message.active {
+            display: block;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .card-grid,
+            .artist-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .header-buttons {
+                gap: 6px;
+            }
+
+            .header-btn {
+                padding: 10px 12px;
+                font-size: 11px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .card-grid,
+            .artist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-number {
+                font-size: 60px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         CABEÇALHO
+    ========================= -->
+
+    <header>
+
+        <div class="logo">
+            SAMBA
+        </div>
+
+        <div class="header-buttons">
+
+            <button class="header-btn" onclick="openMenu()">
+                ☰ MENU
+            </button>
+
+            <button class="header-btn" onclick="goToSection('presentation')">
+                APRESENTAÇÃO
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         MENU
+    ========================= -->
+
+    <div class="menu-overlay" id="menu">
+
+        <div class="menu-content">
+
+            <h2>MENU</h2>
+
+            <button class="menu-item" onclick="goToSection('home')">
+                INÍCIO
+            </button>
+
+            <button class="menu-item" onclick="goToSection('origin')">
+                ORIGEM
+            </button>
+
+            <button class="menu-item" onclick="goToSection('african')">
+                INFLUÊNCIA AFRICANA
+            </button>
+
+            <button class="menu-item" onclick="goToSection('music')">
+                CARACTERÍSTICAS MUSICAIS
+            </button>
+
+            <button class="menu-item" onclick="goToSection('artists')">
+                ARTISTAS
+            </button>
+
+            <button class="menu-item" onclick="goToSection('presentation')">
+                MÚSICA ESCOLHIDA
+            </button>
+
+            <button class="menu-item" onclick="closeMenu()">
+                FECHAR MENU
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         INÍCIO
+    ========================= -->
+
+    <section id="home">
+
+        <div class="home-content">
+
+            <div class="small-title">
+                Entre ritmos e raízes
+            </div>
+
+            <h1 class="main-title">
+                SAMBA
+            </h1>
+
+            <p class="subtitle">
+                Uma viagem pela origem, pela influência africana,
+                pelos instrumentos, pelos artistas e pela cultura
+                que transformou o samba em um dos maiores símbolos
+                musicais do Brasil.
+            </p>
+
+            <button class="start-btn" onclick="goToSection('origin')">
+                COMEÇAR →
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         01 — ORIGEM DO SAMBA
+    ========================= -->
+
+    <section id="origin" class="content-section">
+
+        <div class="section-number">
+            01
+        </div>
+
+        <div class="section-content">
+
+            <p class="section-label">
+                DE ONDE VEIO?
+            </p>
+
+            <h2>
+                A origem do<br>
+                <span>Samba</span>
+            </h2>
+
+            <p class="section-intro">
+                O samba possui raízes em práticas musicais afro-brasileiras
+                desenvolvidas em diferentes regiões do Brasil, especialmente
+                na Bahia. No início do século XX, ele se consolidou como
+                gênero urbano no Rio de Janeiro.
+            </p>
+
+            <div class="card-grid">
+
+                <button class="info-card" onclick="showInfo('origin', 0)">
+                    <strong>ONDE SURGIU?</strong>
+                    <span>Raízes na Bahia e consolidação no Rio.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('origin', 1)">
+                    <strong>QUANDO SURGIU?</strong>
+                    <span>Consolidação no início do século XX.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('origin', 2)">
+                    <strong>COMO SURGIU?</strong>
+                    <span>Mistura de diferentes tradições musicais.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('origin', 3)">
+                    <strong>CONTEXTO HISTÓRICO</strong>
+                    <span>Ligação profunda com a população negra.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('origin', 4)">
+                    <strong>CONTEXTO SOCIAL</strong>
+                    <span>Comunidades, terreiros, quintais e morros.</span>
+                </button>
+
+            </div>
+
+            <div id="origin-info" class="info-box">
+
+                <h3>
+                    Escolha um dos tópicos
+                </h3>
+
+                <p>
+                    Clique nos cartões acima para descobrir mais sobre
+                    a origem do samba.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         02 — INFLUÊNCIA AFRICANA
+    ========================= -->
+
+    <section id="african" class="content-section">
+
+        <div class="section-number">
+            02
+        </div>
+
+        <div class="section-content">
+
+            <p class="section-label">
+                RAÍZES E CULTURA
+            </p>
+
+            <h2>
+                Influência<br>
+                <span>Africana</span>
+            </h2>
+
+            <p class="section-intro">
+                O samba possui forte influência de tradições africanas e
+                afro-brasileiras. Essa influência aparece nos ritmos,
+                na percussão, na dança, na oralidade, na coletividade
+                e nas formas de celebração.
+            </p>
+
+            <div class="card-grid">
+
+                <button class="info-card" onclick="showInfo('african', 0)">
+                    <strong>ELEMENTOS AFRICANOS</strong>
+                    <span>Ritmo, percussão, dança, oralidade e coletividade.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('african', 1)">
+                    <strong>POVOS AFRICANOS</strong>
+                    <span>Conhecimentos musicais, ritmos, cantos e danças.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('african', 2)">
+                    <strong>AFRODESCENDENTES</strong>
+                    <span>Preservação e transformação das tradições.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('african', 3)">
+                    <strong>CARACTERÍSTICAS</strong>
+                    <span>Percussão, participação coletiva e roda.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('african', 4)">
+                    <strong>E SE NÃO EXISTISSE?</strong>
+                    <span>O samba não teria se formado como conhecemos.</span>
+                </button>
+
+            </div>
+
+            <div id="african-info" class="info-box">
+
+                <h3>
+                    Descubra a influência africana
+                </h3>
+
+                <p>
+                    Clique nos cartões para conhecer a importância
+                    das tradições africanas e afro-brasileiras.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         03 — CARACTERÍSTICAS MUSICAIS
+    ========================= -->
+
+    <section id="music" class="content-section">
+
+        <div class="section-number">
+            03
+        </div>
+
+        <div class="section-content">
+
+            <p class="section-label">
+                COMO É O SAMBA?
+            </p>
+
+            <h2>
+                Características<br>
+                <span>Musicais</span>
+            </h2>
+
+            <p class="section-intro">
+                O samba possui diferentes formas e vertentes. Entre as
+                matrizes reconhecidas pelo Iphan estão o partido-alto,
+                o samba de terreiro e o samba-enredo.
+            </p>
+
+            <div class="card-grid">
+
+                <button class="info-card" onclick="showInfo('music', 0)">
+                    <strong>RITMO</strong>
+                    <span>Percussão e interação entre músicos e participantes.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('music', 1)">
+                    <strong>INSTRUMENTOS</strong>
+                    <span>Pandeiro, surdo e cavaquinho.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('music', 2)">
+                    <strong>DANÇA</strong>
+                    <span>Samba no pé, gafieira e samba de roda.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('music', 3)">
+                    <strong>FORMA DE CANTAR</strong>
+                    <span>Projeção vocal, ritmo, coro e improvisação.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('music', 4)">
+                    <strong>LETRAS</strong>
+                    <span>Amor, festas, relações sociais e cotidiano.</span>
+                </button>
+
+                <button class="info-card" onclick="showInfo('music', 5)">
+                    <strong>MANIFESTAÇÕES</strong>
+                    <span>Rodas, Carnaval, escolas de samba e celebrações.</span>
+                </button>
+
+            </div>
+
+            <div id="music-info" class="info-box">
+
+                <h3>
+                    Escolha uma característica
+                </h3>
+
+                <p>
+                    Clique nos cartões para descobrir como cada elemento
+                    participa da construção do samba.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         04 — PRINCIPAIS ARTISTAS
+    ========================= -->
+
+    <section id="artists" class="content-section">
+
+        <div class="section-number">
+            04
+        </div>
+
+        <div class="section-content">
+
+            <p class="section-label">
+                GRANDES NOMES
+            </p>
+
+            <h2>
+                Principais<br>
+                <span>Artistas</span>
+            </h2>
+
+            <p class="section-intro">
+                Diversos artistas ajudaram a construir e divulgar a história
+                do samba. Entre eles estão Paulinho da Viola, Zeca Pagodinho
+                e Cartola.
+            </p>
+
+            <div class="artist-grid">
+
+                <button class="artist-card" onclick="showArtist(0)">
+
+                    <h3>
+                        Paulinho da Viola
+                    </h3>
+
+                    <p>
+                        Clique para conhecer.
+                    </p>
+
+                </button>
+
+                <button class="artist-card" onclick="showArtist(1)">
+
+                    <h3>
+                        Zeca Pagodinho
+                    </h3>
+
+                    <p>
+                        Clique para conhecer.
+                    </p>
+
+                </button>
+
+                <button class="artist-card" onclick="showArtist(2)">
+
+                    <h3>
+                        Cartola
+                    </h3>
+
+                    <p>
+                        Clique para conhecer.
+                    </p>
+
+                </button>
+
+            </div>
+
+            <div id="artist-info" class="info-box">
+
+                <h3>
+                    Escolha um artista
+                </h3>
+
+                <p>
+                    Clique em um dos nomes acima para conhecer um pouco
+                    mais sobre sua trajetória.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         05 — MÚSICA ESCOLHIDA
+    ========================= -->
+
+    <section id="presentation" class="content-section">
+
+        <div class="section-number">
+            05
+        </div>
+
+        <div class="section-content">
+
+            <p class="section-label">
+                APRESENTAÇÃO MUSICAL
+            </p>
+
+            <h2>
+                Aquarela<br>
+                <span>do Brasil</span>
+            </h2>
+
+            <p class="section-intro">
+                Para a apresentação musical, escolhemos uma obra importante
+                do samba-exaltação.
+            </p>
+
+            <div class="music-box">
+
+                <h3>
+                    Aquarela do Brasil
+                </h3>
+
+                <div class="music-details">
+
+                    <strong>Compositor:</strong> Ary Barroso<br>
+
+                    <strong>Ano:</strong> 1939
+
+                </div>
+
+                <div class="card-grid">
+
+                    <button class="info-card" onclick="showMusicReason()">
+
+                        <strong>
+                            POR QUE ESCOLHEMOS?
+                        </strong>
+
+                        <span>
+                            Clique para descobrir.
+                        </span>
+
+                    </button>
+
+                </div>
+
+                <div id="music-reason" class="info-box">
+
+                    <h3>
+                        Por que escolhemos essa música?
+                    </h3>
+
+                    <p>
+                        Escolhemos “Aquarela do Brasil” porque a música
+                        pertence ao samba-exaltação e apresenta uma forte
+                        valorização de elementos relacionados ao Brasil.
+                        Sua letra exalta o país, sua cultura e suas
+                        características, tornando-a uma obra representativa
+                        de uma importante vertente do samba.
+                    </p>
+
+                </div>
+
+                <br>
+
+                <button class="music-button" onclick="showMusicPlayer()">
+                    ▶ OUVIR A MÚSICA
+                </button>
+
+                <div id="music-message" class="music-message">
+
+                    <strong>
+                        Aquarela do Brasil — Ary Barroso
+                    </strong>
+
+                    <p>
+                        A música escolhida está indicada para a apresentação
+                        do grupo. O botão acima funciona dentro desta página
+                        e não abre outra página.
+                    </p>
+
+                    <p>
+                        Para manter o site totalmente em uma única página,
+                        não foi colocado nenhum link externo.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        /* =========================
+           MENU
+        ========================= */
+
+        function openMenu() {
+
+            document.getElementById("menu").classList.add("active");
+
+        }
+
+
+        function closeMenu() {
+
+            document.getElementById("menu").classList.remove("active");
+
+        }
+
+
+        /* =========================
+           DESLIZAR PARA SEÇÃO
+        ========================= */
+
+        function goToSection(sectionId) {
+
+            closeMenu();
+
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================
+           INFORMAÇÕES DAS SEÇÕES
+        ========================= */
+
+        const information = {
+
+            origin: [
+
+                {
+                    title: "Onde surgiu?",
+                    text: "O samba possui raízes em práticas musicais afro-brasileiras desenvolvidas em diferentes regiões do Brasil, especialmente na Bahia. No início do século XX, ele se consolidou como gênero urbano no Rio de Janeiro, onde ganhou novas características e se espalhou pelo país."
+                },
+
+                {
+                    title: "Em que período surgiu?",
+                    text: "O samba urbano carioca se consolidou no início do século XX. A gravação de “Pelo Telefone”, em 1917, é tradicionalmente considerada um dos marcos importantes da história do samba urbano."
+                },
+
+                {
+                    title: "Como surgiu?",
+                    text: "O samba surgiu a partir da transformação e da mistura de diferentes tradições musicais, principalmente de origem africana e afro-brasileira. No Rio de Janeiro, rodas, festas, terreiros e encontros comunitários foram importantes para seu desenvolvimento. Influências como o samba de roda baiano, o jongo, o maxixe e a marcha carnavalesca contribuíram para a formação das matrizes do samba carioca."
+                },
+
+                {
+                    title: "Qual era o contexto histórico?",
+                    text: "O desenvolvimento do samba está profundamente ligado à história da população negra no Brasil. Práticas musicais trazidas e recriadas por africanos escravizados e seus descendentes continuaram presentes após a abolição da escravidão e contribuíram para a formação de novas expressões culturais."
+                },
+
+                {
+                    title: "Qual era o contexto social?",
+                    text: "O samba se desenvolveu principalmente em comunidades populares e negras, em espaços como terreiros, quintais, morros, ruas e posteriormente escolas de samba. No início, foi marginalizado e até perseguido, mas com o tempo conquistou espaço e tornou-se um dos principais símbolos culturais do Brasil."
+                }
+
+            ],
+
+
+            african: [
+
+                {
+                    title: "Quais elementos da cultura africana estão presentes?",
+                    text: "O samba possui forte influência de tradições africanas e afro-brasileiras, percebida principalmente nos ritmos, na percussão, na dança, na oralidade, na importância da coletividade e nas formas de celebração. Essas influências foram preservadas e transformadas pelos descendentes de africanos no Brasil."
+                },
+
+                {
+                    title: "Como os povos africanos contribuíram?",
+                    text: "Africanos trazidos para o Brasil contribuíram com conhecimentos musicais, ritmos, formas de tocar instrumentos, danças, cantos e práticas coletivas que foram transmitidos e transformados ao longo das gerações."
+                },
+
+                {
+                    title: "Como os afrodescendentes contribuíram?",
+                    text: "Os afrodescendentes tiveram papel fundamental na criação, preservação e transformação do samba. Foram responsáveis por manter vivas tradições africanas e afro-brasileiras e por desenvolver novas formas de expressão musical e cultural que ajudaram a formar o samba brasileiro."
+                },
+
+                {
+                    title: "Quais características musicais estão relacionadas às tradições africanas?",
+                    text: "Entre as principais características estão a forte presença da percussão e do ritmo, a participação coletiva, a interação entre canto e instrumentos, a dança e a importância da roda como espaço de expressão e convivência. O samba de roda, por exemplo, preserva elementos de tradições transmitidas por africanos escravizados e seus descendentes."
+                },
+
+                {
+                    title: "O que seria do samba sem essa contribuição?",
+                    text: "Sem a contribuição dos povos africanos e afrodescendentes, o samba não teria se formado da maneira como o conhecemos. Suas raízes, seus ritmos, suas formas de expressão e grande parte de sua história estão profundamente ligadas às experiências e às tradições das comunidades negras no Brasil."
+                }
+
+            ],
+
+
+            music: [
+
+                {
+                    title: "Ritmo",
+                    text: "O samba possui diferentes formas e vertentes. Entre as matrizes reconhecidas pelo Iphan estão o partido-alto, o samba de terreiro e o samba-enredo. O ritmo do samba é marcado pela forte presença da percussão e pela interação entre os músicos e participantes."
+                },
+
+                {
+                    title: "Instrumentos musicais",
+                    text: "Alguns instrumentos muito associados ao samba são o pandeiro, o surdo e o cavaquinho. A percussão possui papel fundamental na construção do ritmo."
+                },
+
+                {
+                    title: "Dança",
+                    text: "Entre as formas de dança relacionadas ao samba estão o samba no pé, o samba de gafieira e o samba de roda. No samba de roda, por exemplo, a dança acontece no centro da roda enquanto os demais participantes cantam e tocam instrumentos."
+                },
+
+                {
+                    title: "Forma de cantar",
+                    text: "O canto no samba costuma apresentar boa projeção vocal, articulação clara e forte relação com o ritmo. Em algumas formas de samba, também existe alternância entre solistas e coro, além de improvisações."
+                },
+
+                {
+                    title: "Características das letras",
+                    text: "As letras de samba frequentemente utilizam linguagem próxima do cotidiano e abordam temas como amor, festas, relações sociais, experiências pessoais, desigualdades, cultura e vida nas comunidades."
+                },
+
+                {
+                    title: "Relação com manifestações culturais",
+                    text: "O samba está ligado a diversas manifestações culturais brasileiras, como rodas de samba, Carnaval, escolas de samba e celebrações comunitárias. Ele também representa uma importante expressão da memória e da cultura afro-brasileira."
+                }
+
+            ]
+
+        };
+
+
+        /* =========================
+           MOSTRAR INFORMAÇÕES
+        ========================= */
+
+        function showInfo(type, number) {
+
+            const infoBox = document.getElementById(type + "-info");
+
+            const cards = document.querySelectorAll(
+                "#" + type + " .info-card"
+            );
+
+            cards.forEach(function(card) {
+
+                card.classList.remove("active");
+
+            });
+
+            cards[number].classList.add("active");
+
+            infoBox.innerHTML = `
+
+                <h3>
+                    ${information[type][number].title}
+                </h3>
+
+                <p>
+                    ${information[type][number].text}
+                </p>
+
+            `;
+
+        }
+
+
+        /* =========================
+           ARTISTAS
+        ========================= */
+
+        const artists = [
+
+            {
+                title: "Paulinho da Viola",
+                text: "Paulinho da Viola, nome artístico de Paulo César Batista de Faria, nasceu no Rio de Janeiro em 1942. É cantor, compositor e instrumentista e é reconhecido como um dos grandes nomes do samba e da música brasileira."
+            },
+
+            {
+                title: "Zeca Pagodinho",
+                text: "Zeca Pagodinho é cantor e compositor brasileiro, conhecido principalmente por sua atuação no samba e no pagode. Tornou-se um dos artistas mais populares desses gêneros no Brasil."
+            },
+
+            {
+                title: "Cartola",
+                text: "Cartola, nome artístico de Angenor de Oliveira, foi cantor, compositor e um dos grandes nomes da história do samba. Foi um dos fundadores da Estação Primeira de Mangueira e deixou importantes obras da música brasileira."
+            }
+
+        ];
+
+
+        function showArtist(number) {
+
+            const info = document.getElementById("artist-info");
+
+            const cards = document.querySelectorAll(".artist-card");
+
+            cards.forEach(function(card) {
+
+                card.classList.remove("active");
+
+            });
+
+            cards[number].classList.add("active");
+
+            info.innerHTML = `
+
+                <h3>
+                    ${artists[number].title}
+                </h3>
+
+                <p>
+                    ${artists[number].text}
+                </p>
+
+            `;
+
+        }
+
+
+        /* =========================
+           MÚSICA ESCOLHIDA
+        ========================= */
+
+        function showMusicReason() {
+
+            const box = document.getElementById("music-reason");
+
+            box.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+
+        function showMusicPlayer() {
+
+            const message = document.getElementById("music-message");
+
+            message.classList.toggle("active");
+
+        }
+
+    </script>
+
+</body>
+</html>
